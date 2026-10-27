@@ -40,7 +40,6 @@ import java.time.format.TextStyle
 import java.util.Locale
 
 private val SlovakLocale = Locale.forLanguageTag("sk-SK")
-private val WeekdayLabels = listOf("P", "U", "S", "Š", "P", "S", "N")
 
 @Composable
 fun OwnerScheduleScreen(
@@ -133,42 +132,43 @@ private fun MonthCalendar(
     modifier: Modifier = Modifier,
 ) {
     val monthName = month.atDay(1).month.getDisplayName(TextStyle.FULL, SlovakLocale).replaceFirstChar { it.titlecase(SlovakLocale) }
-    val firstDayOffset = month.atDay(1).dayOfWeek.value - 1
 
     Card(modifier = modifier, colors = CardDefaults.cardColors(containerColor = Color.White)) {
-        Column(modifier = Modifier.padding(9.dp)) {
+        Column(modifier = Modifier.padding(12.dp)) {
             Text(monthName, modifier = Modifier.fillMaxWidth(), textAlign = TextAlign.Center, style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold)
-            Spacer(Modifier.height(7.dp))
-            Row(modifier = Modifier.fillMaxWidth()) {
-                WeekdayLabels.forEach { label ->
-                    Text(label, modifier = Modifier.weight(1f), textAlign = TextAlign.Center, color = Color(0xFF718187), style = MaterialTheme.typography.labelSmall)
-                }
-            }
-            repeat(6) { week ->
-                Row(modifier = Modifier.fillMaxWidth()) {
-                    repeat(7) { weekday ->
-                        val dayNumber = week * 7 + weekday - firstDayOffset + 1
-                        if (dayNumber in 1..month.lengthOfMonth()) {
-                            val date = month.atDay(dayNumber)
-                            val isSelected = date == selectedDate
-                            Text(
-                                text = dayNumber.toString(),
-                                modifier = Modifier
-                                    .weight(1f)
-                                    .height(24.dp)
-                                    .clip(CircleShape)
-                                    .background(if (isSelected) MaterialTheme.colorScheme.primary else Color.Transparent)
-                                    .clickable { onDateSelected(date) }
-                                    .padding(top = 4.dp),
-                                textAlign = TextAlign.Center,
-                                color = if (isSelected) Color.White else Color(0xFF25383F),
-                                style = MaterialTheme.typography.labelSmall,
-                                fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal,
-                            )
-                        } else {
-                            Spacer(Modifier.weight(1f).height(24.dp))
-                        }
-                    }
+            Spacer(Modifier.height(8.dp))
+            repeat(month.lengthOfMonth()) { dayIndex ->
+                val date = month.atDay(dayIndex + 1)
+                val isSelected = date == selectedDate
+                val weekday = date.dayOfWeek.getDisplayName(TextStyle.FULL, SlovakLocale).replaceFirstChar { it.titlecase(SlovakLocale) }
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clip(RoundedCornerShape(10.dp))
+                        .background(if (isSelected) MaterialTheme.colorScheme.primary else Color.Transparent)
+                        .clickable { onDateSelected(date) }
+                        .padding(horizontal = 12.dp, vertical = 10.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Text(
+                        text = "%02d".format(date.dayOfMonth),
+                        color = if (isSelected) Color.White else MaterialTheme.colorScheme.primary,
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.Bold,
+                    )
+                    Spacer(Modifier.width(14.dp))
+                    Text(
+                        text = weekday,
+                        modifier = Modifier.weight(1f),
+                        color = if (isSelected) Color.White else Color(0xFF25383F),
+                        style = MaterialTheme.typography.bodyLarge,
+                    )
+                    Text(
+                        text = if (isSelected) "Vybraný" else "Vybrať",
+                        color = if (isSelected) Color.White else Color(0xFF718187),
+                        style = MaterialTheme.typography.labelMedium,
+                        fontWeight = FontWeight.Medium,
+                    )
                 }
             }
         }
