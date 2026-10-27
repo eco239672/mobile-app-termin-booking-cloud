@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
@@ -67,19 +68,13 @@ fun OwnerScheduleScreen(
                     fontWeight = FontWeight.Bold,
                 )
             }
-            items(months.chunked(2).size) { rowIndex ->
-                val monthPair = months.chunked(2)[rowIndex]
-                Row(horizontalArrangement = Arrangement.spacedBy(10.dp), modifier = Modifier.fillMaxWidth()) {
-                    monthPair.forEach { month ->
-                        MonthCalendar(
-                            month = month,
-                            selectedDate = selectedDate,
-                            onDateSelected = onDateSelected,
-                            modifier = Modifier.weight(1f),
-                        )
-                    }
-                    if (monthPair.size == 1) Spacer(Modifier.weight(1f))
-                }
+            items(months, key = { it.monthValue }) { month ->
+                MonthCalendar(
+                    month = month,
+                    selectedDate = selectedDate,
+                    onDateSelected = onDateSelected,
+                    modifier = Modifier.fillMaxWidth(),
+                )
             }
             item {
                 WorkingDaySettings(
