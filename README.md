@@ -1,14 +1,19 @@
-# Termín — booking application
+# Termín — Android
 
-Základ cloudovej aplikácie na objednávanie termínov. Momentálne obsahuje responzívny prehľad dňa s ukážkovými dátami. Dáta sú zámerne oddelené v `src/services/appointments.ts`, aby ich bolo možné neskôr jednoducho nahradiť cloudovým API.
+Natívna Android aplikácia na objednávanie termínov, vytvorená v Kotlin/Jetpack Compose.
 
-## Spustenie
+Momentálne obsahuje funkčný prehľad dňa s ukážkovými termínmi. Doménové modely a úložisko sú samostatné, aby sme ich v ďalšom kroku mohli napojiť na cloudovú databázu, prihlásenie a verejnú rezerváciu.
 
-```powershell
-npm install
-npm run dev
-```
+## Otvorenie a spustenie
 
-## Ďalší krok
+1. Otvorte tento priečinok v Android Studio.
+2. Vyberte emulátor alebo pripojený Android telefón.
+3. Stlačte **Run**.
 
-Vyberieme typ prevádzky (služby, ambulancia, kaderníctvo atď.) a napojíme trvalé cloudové úložisko, používateľské účty a verejný rezervačný formulár.
+Projekt vyžaduje JDK 17 a Android SDK Platform 36.
+
+## Štruktúra
+
+- `app/ui` — obrazovky a dizajnový systém
+- `app/data` — lokálne zdroje dát, pripravené na výmenu za cloudové API
+- `app/domain` — model termínu
