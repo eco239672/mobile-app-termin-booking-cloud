@@ -5,6 +5,8 @@ Termin is a native Android application for managing appointments. It is built wi
 ## Current features
 
 - A responsive daily appointment dashboard
+- A yearly owner calendar with 12 selectable months
+- Configurable working-day start time and duration (8 hours by default)
 - Appointment cards with time, customer, service, duration, and status
 - Confirmed and pending appointment summaries
 - A small, reusable Material 3 design system
