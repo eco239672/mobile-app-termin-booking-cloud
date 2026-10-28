@@ -82,6 +82,7 @@ fun OwnerScheduleScreen(
                         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
                         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
                     ) {
+                        BarberFlourish(top = true)
                         Text(
                             text = "Barbershop\nStephano",
                             modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
@@ -89,7 +90,7 @@ fun OwnerScheduleScreen(
                             style = MaterialTheme.typography.headlineSmall,
                             fontWeight = FontWeight.Normal,
                         )
-                        BarberFlourish()
+                        BarberFlourish(top = false)
                     }
 
                     Spacer(Modifier.height(40.dp))
@@ -122,32 +123,31 @@ fun OwnerScheduleScreen(
 }
 
 @Composable
-private fun BarberFlourish() {
+private fun BarberFlourish(top: Boolean) {
     Canvas(
         modifier = Modifier
             .fillMaxWidth()
-            .height(24.dp)
-            .padding(horizontal = 22.dp),
+            .height(26.dp)
+            .padding(horizontal = 34.dp),
     ) {
         val lineColor = Color(0xFF7D4D31)
-        val stroke = Stroke(width = 1.5.dp.toPx(), cap = StrokeCap.Round)
-        val midY = size.height * 0.52f
+        val stroke = Stroke(width = 1.6.dp.toPx(), cap = StrokeCap.Round)
 
-        val left = Path().apply {
-            moveTo(size.width * 0.05f, midY)
-            cubicTo(size.width * 0.13f, size.height * 0.10f, size.width * 0.26f, size.height * 0.10f, size.width * 0.31f, midY)
-            cubicTo(size.width * 0.35f, size.height * 0.85f, size.width * 0.41f, size.height * 0.85f, size.width * 0.45f, midY)
-            cubicTo(size.width * 0.41f, size.height * 0.35f, size.width * 0.35f, size.height * 0.35f, size.width * 0.34f, midY)
-        }
-        val right = Path().apply {
-            moveTo(size.width * 0.95f, midY)
-            cubicTo(size.width * 0.87f, size.height * 0.10f, size.width * 0.74f, size.height * 0.10f, size.width * 0.69f, midY)
-            cubicTo(size.width * 0.65f, size.height * 0.85f, size.width * 0.59f, size.height * 0.85f, size.width * 0.55f, midY)
-            cubicTo(size.width * 0.59f, size.height * 0.35f, size.width * 0.65f, size.height * 0.35f, size.width * 0.66f, midY)
+        val flourish = Path().apply {
+            if (top) {
+                moveTo(size.width * 0.12f, size.height * 0.72f)
+                cubicTo(size.width * 0.25f, size.height * 0.08f, size.width * 0.52f, size.height * 0.10f, size.width * 0.62f, size.height * 0.52f)
+                cubicTo(size.width * 0.73f, size.height * 0.93f, size.width * 0.90f, size.height * 0.64f, size.width * 0.87f, size.height * 0.18f)
+                cubicTo(size.width * 0.86f, size.height * 0.04f, size.width * 0.79f, size.height * 0.10f, size.width * 0.80f, size.height * 0.27f)
+            } else {
+                moveTo(size.width * 0.88f, size.height * 0.28f)
+                cubicTo(size.width * 0.75f, size.height * 0.92f, size.width * 0.49f, size.height * 0.90f, size.width * 0.39f, size.height * 0.48f)
+                cubicTo(size.width * 0.29f, size.height * 0.07f, size.width * 0.11f, size.height * 0.36f, size.width * 0.14f, size.height * 0.81f)
+                cubicTo(size.width * 0.15f, size.height * 0.95f, size.width * 0.22f, size.height * 0.89f, size.width * 0.21f, size.height * 0.72f)
+            }
         }
 
-        drawPath(left, color = lineColor, style = stroke)
-        drawPath(right, color = lineColor, style = stroke)
+        drawPath(flourish, color = lineColor, style = stroke)
     }
 }
 
