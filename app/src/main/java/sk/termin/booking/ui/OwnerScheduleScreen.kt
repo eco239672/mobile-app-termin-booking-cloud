@@ -24,8 +24,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import sk.termin.booking.R
 import sk.termin.booking.domain.Appointment
 import java.time.LocalDate
@@ -71,8 +73,17 @@ fun OwnerScheduleScreen(
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Text(
-                    text = "Barbershop\nStephano",
+                    text = "Barbershop",
                     modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
+                    textAlign = TextAlign.Center,
+                    color = MaterialTheme.colorScheme.primary,
+                    fontFamily = FontFamily.Cursive,
+                    fontSize = 34.sp,
+                    fontWeight = FontWeight.Normal,
+                )
+                Text(
+                    text = "Stephano",
+                    modifier = Modifier.fillMaxWidth(),
                     textAlign = TextAlign.Center,
                     style = MaterialTheme.typography.headlineSmall,
                     fontWeight = FontWeight.Normal,
