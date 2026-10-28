@@ -35,6 +35,7 @@ import java.time.format.TextStyle
 import java.util.Locale
 
 private val SlovakLocale = Locale.forLanguageTag("sk-SK")
+private val TenMillimetres = 63.dp
 
 @Composable
 fun OwnerScheduleScreen(
@@ -59,6 +60,15 @@ fun OwnerScheduleScreen(
         )
         Column(
             modifier = Modifier
+                .fillMaxWidth()
+                .statusBarsPadding()
+                .padding(start = 32.dp, top = TenMillimetres, end = 32.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            BusinessTitle()
+        }
+        Column(
+            modifier = Modifier
                 .fillMaxSize()
                 .statusBarsPadding()
                 .navigationBarsPadding()
@@ -72,27 +82,7 @@ fun OwnerScheduleScreen(
                     .padding(horizontal = 28.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                Text(
-                    text = "Barbershop",
-                    modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
-                    textAlign = TextAlign.Center,
-                    color = androidx.compose.ui.graphics.Color.Black,
-                    fontFamily = FontFamily.Cursive,
-                    fontSize = 51.sp,
-                    fontWeight = FontWeight.Normal,
-                )
-                Text(
-                    text = "Stephano",
-                    modifier = Modifier.fillMaxWidth(),
-                    textAlign = TextAlign.Center,
-                    color = androidx.compose.ui.graphics.Color.Black,
-                    fontSize = 36.sp,
-                    fontWeight = FontWeight.Normal,
-                )
-
-                    Spacer(Modifier.height(40.dp))
-
-                    Row(horizontalArrangement = Arrangement.spacedBy(0.dp)) {
+                Row(horizontalArrangement = Arrangement.spacedBy(0.dp)) {
                         ValueTile(year.take(2), Modifier.weight(1f))
                         ValueTile(year.drop(2), Modifier.weight(1f))
                         Spacer(Modifier.width(23.dp))
@@ -116,6 +106,29 @@ fun OwnerScheduleScreen(
                     }
             }
         }
+    }
+}
+
+@Composable
+private fun BusinessTitle() {
+    Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+        Text(
+            text = "Barbershop",
+            modifier = Modifier.fillMaxWidth(),
+            textAlign = TextAlign.Center,
+            color = androidx.compose.ui.graphics.Color.Black,
+            fontFamily = FontFamily.Cursive,
+            fontSize = 51.sp,
+            fontWeight = FontWeight.Normal,
+        )
+        Text(
+            text = "Stephano",
+            modifier = Modifier.fillMaxWidth(),
+            textAlign = TextAlign.Center,
+            color = androidx.compose.ui.graphics.Color.Black,
+            fontSize = 36.sp,
+            fontWeight = FontWeight.Normal,
+        )
     }
 }
 
