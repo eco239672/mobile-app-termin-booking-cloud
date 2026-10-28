@@ -1,6 +1,5 @@
 package sk.termin.booking.ui
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -15,7 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -218,13 +217,11 @@ private fun BarberPole(modifier: Modifier = Modifier) {
 
 @Composable
 private fun MonthArrowButton(symbol: String, onClick: () -> Unit) {
-    OutlinedButton(
+    TextButton(
         onClick = onClick,
         modifier = Modifier.width(46.dp).height(66.dp),
-        shape = androidx.compose.foundation.shape.RoundedCornerShape(0.dp),
-        border = BorderStroke(1.dp, MaterialTheme.colorScheme.onSurface),
         contentPadding = androidx.compose.foundation.layout.PaddingValues(0.dp),
     ) {
-        Text(symbol, style = MaterialTheme.typography.headlineMedium)
+        Text(symbol, color = Color.Black, style = MaterialTheme.typography.headlineMedium)
     }
 }
