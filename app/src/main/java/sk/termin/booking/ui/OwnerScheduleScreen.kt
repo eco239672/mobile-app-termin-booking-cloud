@@ -94,7 +94,7 @@ fun OwnerScheduleScreen(
                 .fillMaxSize()
                 .statusBarsPadding()
                 .navigationBarsPadding()
-                .padding(start = 32.dp, top = 178.dp, end = 32.dp, bottom = 28.dp),
+                .padding(start = 32.dp, top = 246.dp, end = 32.dp, bottom = 28.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
         ) {
@@ -105,7 +105,7 @@ fun OwnerScheduleScreen(
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Box(
-                    modifier = Modifier.fillMaxWidth().height(70.dp),
+                    modifier = Modifier.fillMaxWidth().height(132.dp),
                     contentAlignment = Alignment.Center,
                 ) {
                     Text(
@@ -113,7 +113,7 @@ fun OwnerScheduleScreen(
                         textAlign = TextAlign.Center,
                         color = Color.Black,
                         fontFamily = FontFamily.Cursive,
-                        fontSize = 78.sp,
+                        fontSize = 117.sp,
                         fontWeight = FontWeight.Normal,
                     )
                 }
@@ -121,7 +121,7 @@ fun OwnerScheduleScreen(
                     Spacer(Modifier.height(34.dp))
 
                 Box(
-                    modifier = Modifier.fillMaxWidth().height(66.dp),
+                    modifier = Modifier.fillMaxWidth().height(78.dp),
                     contentAlignment = Alignment.Center,
                 ) {
                     Text(
@@ -130,6 +130,7 @@ fun OwnerScheduleScreen(
                         color = Color.Black,
                         style = MaterialTheme.typography.headlineLarge,
                         fontFamily = FontFamily.Cursive,
+                        fontSize = 48.sp,
                         fontWeight = FontWeight.Normal,
                     )
                 }
@@ -188,7 +189,7 @@ private fun BusinessTitle() {
             textAlign = TextAlign.Center,
             color = Color.Black,
             fontFamily = FontFamily.Cursive,
-            fontSize = 36.sp,
+            fontSize = 54.sp,
             fontWeight = FontWeight.Normal,
         )
         Spacer(Modifier.height(4.dp))
@@ -198,7 +199,7 @@ private fun BusinessTitle() {
             textAlign = TextAlign.Center,
             color = Color.Black,
             fontFamily = FontFamily.Cursive,
-            fontSize = 26.sp,
+            fontSize = 39.sp,
             fontWeight = FontWeight.Normal,
         )
     }
@@ -274,8 +275,8 @@ private fun OpenLabel() {
 
     Box(
         modifier = Modifier
-            .width(112.dp)
-            .height(48.dp)
+            .width(150.dp)
+            .height(64.dp)
             .drawBehind {
                 if (isPressed) {
                     val glowRadius = 73.dp.toPx()
@@ -301,7 +302,7 @@ private fun OpenLabel() {
             textAlign = TextAlign.Center,
             color = Color.Black,
             fontFamily = FontFamily.Cursive,
-            fontSize = 26.sp,
+            fontSize = 39.sp,
             fontWeight = FontWeight.Normal,
         )
     }
