@@ -2,7 +2,6 @@ package sk.termin.booking.ui
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -199,11 +198,7 @@ private fun BarberPole(modifier: Modifier = Modifier) {
 private fun ValueTile(value: String, modifier: Modifier, compact: Boolean = false) {
     Box(
         modifier = modifier
-            .height(if (compact) 66.dp else 70.dp)
-            .border(
-                border = BorderStroke(1.dp, Color.Black),
-                shape = androidx.compose.foundation.shape.RoundedCornerShape(0.dp),
-            ),
+            .height(if (compact) 66.dp else 70.dp),
         contentAlignment = Alignment.Center,
     ) {
         Text(
