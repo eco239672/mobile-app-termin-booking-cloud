@@ -90,14 +90,8 @@ fun OwnerScheduleScreen(
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Row(horizontalArrangement = Arrangement.spacedBy(0.dp)) {
-                        ValueTile(year.take(2), Modifier.weight(1f))
-                        ValueTile(year.drop(2), Modifier.weight(1f))
-                        Spacer(Modifier.width(23.dp))
-                        NextButton(
-                            onClick = {
-                                onDateSelected(selectedDate.plusYears(1))
-                            },
-                        )
+                    ValueTile(year, Modifier.weight(0.72f))
+                    Spacer(Modifier.weight(0.28f))
                     }
 
                     Spacer(Modifier.height(34.dp))
