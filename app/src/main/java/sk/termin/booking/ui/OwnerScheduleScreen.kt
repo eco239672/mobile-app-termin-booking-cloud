@@ -89,22 +89,19 @@ fun OwnerScheduleScreen(
                     .padding(horizontal = 28.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                Row(horizontalArrangement = Arrangement.spacedBy(0.dp)) {
-                    Box(
-                        modifier = Modifier.weight(0.72f).height(70.dp),
-                        contentAlignment = Alignment.Center,
-                    ) {
-                        Text(
-                            text = year,
-                            textAlign = TextAlign.Center,
-                            color = Color.Black,
-                            fontFamily = FontFamily.Cursive,
-                            fontSize = 52.sp,
-                            fontWeight = FontWeight.Normal,
-                        )
-                    }
-                    Spacer(Modifier.weight(0.28f))
-                    }
+                Box(
+                    modifier = Modifier.fillMaxWidth().height(70.dp),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Text(
+                        text = year,
+                        textAlign = TextAlign.Center,
+                        color = Color.Black,
+                        fontFamily = FontFamily.Cursive,
+                        fontSize = 78.sp,
+                        fontWeight = FontWeight.Normal,
+                    )
+                }
 
                     Spacer(Modifier.height(34.dp))
 
