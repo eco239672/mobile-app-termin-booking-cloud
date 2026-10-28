@@ -118,7 +118,7 @@ private fun BusinessTitle() {
             textAlign = TextAlign.Center,
             color = androidx.compose.ui.graphics.Color.Black,
             fontFamily = FontFamily.Cursive,
-            fontSize = 51.sp,
+            fontSize = 76.sp,
             fontWeight = FontWeight.Normal,
         )
         Text(
