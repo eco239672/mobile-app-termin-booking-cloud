@@ -75,7 +75,6 @@ fun OwnerScheduleScreen(
                     .padding(horizontal = 28.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                BarberFlourish(top = true)
                 Text(
                     text = "Barbershop\nStephano",
                     modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
@@ -83,7 +82,7 @@ fun OwnerScheduleScreen(
                     style = MaterialTheme.typography.headlineSmall,
                     fontWeight = FontWeight.Normal,
                 )
-                BarberFlourish(top = false)
+                BarberFlourish()
 
                     Spacer(Modifier.height(40.dp))
 
@@ -115,28 +114,29 @@ fun OwnerScheduleScreen(
 }
 
 @Composable
-private fun BarberFlourish(top: Boolean) {
+private fun BarberFlourish() {
     Canvas(
         modifier = Modifier
             .fillMaxWidth()
-            .height(26.dp)
-            .padding(horizontal = 34.dp),
+            .height(34.dp)
+            .padding(horizontal = 20.dp),
     ) {
         val lineColor = Color(0xFF7D4D31)
-        val stroke = Stroke(width = 1.45.dp.toPx(), cap = StrokeCap.Round)
-        fun y(value: Float) = if (top) size.height * value else size.height * (1f - value)
+        val stroke = Stroke(width = 1.5.dp.toPx(), cap = StrokeCap.Round)
 
         val flourish = Path().apply {
-            moveTo(size.width * 0.05f, y(0.70f))
-            cubicTo(size.width * 0.00f, y(0.96f), size.width * 0.00f, y(0.25f), size.width * 0.12f, y(0.29f))
-            cubicTo(size.width * 0.23f, y(0.34f), size.width * 0.24f, y(0.77f), size.width * 0.43f, y(0.55f))
-            cubicTo(size.width * 0.59f, y(0.35f), size.width * 0.70f, y(0.65f), size.width * 0.83f, y(0.51f))
-            cubicTo(size.width * 0.94f, y(0.40f), size.width * 0.98f, y(0.04f), size.width * 0.86f, y(0.10f))
-            cubicTo(size.width * 0.77f, y(0.15f), size.width * 0.78f, y(0.41f), size.width * 0.88f, y(0.34f))
+            moveTo(size.width * 0.06f, size.height * 0.59f)
+            cubicTo(size.width * 0.00f, size.height * 0.91f, size.width * 0.05f, size.height * 0.98f, size.width * 0.15f, size.height * 0.77f)
+            cubicTo(size.width * 0.21f, size.height * 0.62f, size.width * 0.16f, size.height * 0.30f, size.width * 0.07f, size.height * 0.37f)
+            cubicTo(size.width * 0.00f, size.height * 0.43f, size.width * 0.01f, size.height * 0.61f, size.width * 0.10f, size.height * 0.61f)
+            cubicTo(size.width * 0.27f, size.height * 0.59f, size.width * 0.36f, size.height * 0.24f, size.width * 0.51f, size.height * 0.43f)
+            cubicTo(size.width * 0.64f, size.height * 0.59f, size.width * 0.72f, size.height * 0.80f, size.width * 0.84f, size.height * 0.59f)
+            cubicTo(size.width * 0.95f, size.height * 0.38f, size.width * 0.91f, size.height * 0.08f, size.width * 0.80f, size.height * 0.15f)
+            cubicTo(size.width * 0.72f, size.height * 0.20f, size.width * 0.73f, size.height * 0.40f, size.width * 0.82f, size.height * 0.38f)
         }
         val centreAccent = Path().apply {
-            moveTo(size.width * 0.31f, y(0.67f))
-            cubicTo(size.width * 0.39f, y(0.72f), size.width * 0.47f, y(0.49f), size.width * 0.57f, y(0.46f))
+            moveTo(size.width * 0.29f, size.height * 0.59f)
+            cubicTo(size.width * 0.37f, size.height * 0.43f, size.width * 0.43f, size.height * 0.33f, size.width * 0.51f, size.height * 0.43f)
         }
 
         drawPath(flourish, color = lineColor, style = stroke)
