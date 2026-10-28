@@ -1,7 +1,6 @@
 package sk.termin.booking.ui
 
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -24,7 +23,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
@@ -226,19 +225,23 @@ private fun BarberPole(modifier: Modifier = Modifier) {
 private fun MonthArrowButton(symbol: String, onClick: () -> Unit) {
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed = interactionSource.collectIsPressedAsState().value
-    val pressGlow = Brush.radialGradient(
-        colors = if (isPressed) {
-            listOf(Color.Black.copy(alpha = 0.18f), Color.Black.copy(alpha = 0.06f), Color.Transparent)
-        } else {
-            listOf(Color.Transparent, Color.Transparent)
-        },
-    )
 
     Box(
         modifier = Modifier
             .size(73.dp)
-            .clip(androidx.compose.foundation.shape.CircleShape)
-            .background(pressGlow)
+            .drawBehind {
+                if (isPressed) {
+                    val glowRadius = 73.dp.toPx()
+                    drawCircle(
+                        brush = Brush.radialGradient(
+                            colors = listOf(Color.Black.copy(alpha = 0.18f), Color.Black.copy(alpha = 0.06f), Color.Transparent),
+                            center = center,
+                            radius = glowRadius,
+                        ),
+                        radius = glowRadius,
+                    )
+                }
+            }
             .clickable(
                 interactionSource = interactionSource,
                 indication = null,
