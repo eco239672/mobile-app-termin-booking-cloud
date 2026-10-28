@@ -75,23 +75,15 @@ fun OwnerScheduleScreen(
                     .padding(horizontal = 28.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                    Card(
-                        modifier = Modifier.fillMaxWidth(),
-                        shape = androidx.compose.foundation.shape.RoundedCornerShape(0.dp),
-                        border = BorderStroke(1.dp, MaterialTheme.colorScheme.onSurface),
-                        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-                        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
-                    ) {
-                        BarberFlourish(top = true)
-                        Text(
-                            text = "Barbershop\nStephano",
-                            modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
-                            textAlign = TextAlign.Center,
-                            style = MaterialTheme.typography.headlineSmall,
-                            fontWeight = FontWeight.Normal,
-                        )
-                        BarberFlourish(top = false)
-                    }
+                BarberFlourish(top = true)
+                Text(
+                    text = "Barbershop\nStephano",
+                    modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
+                    textAlign = TextAlign.Center,
+                    style = MaterialTheme.typography.headlineSmall,
+                    fontWeight = FontWeight.Normal,
+                )
+                BarberFlourish(top = false)
 
                     Spacer(Modifier.height(40.dp))
 
