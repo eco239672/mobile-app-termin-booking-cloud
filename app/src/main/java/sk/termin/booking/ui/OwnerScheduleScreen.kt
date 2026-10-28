@@ -64,17 +64,12 @@ fun OwnerScheduleScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
         ) {
-            Card(
-                modifier = Modifier.fillMaxWidth(),
-                shape = androidx.compose.foundation.shape.RoundedCornerShape(0.dp),
-                border = BorderStroke(1.dp, MaterialTheme.colorScheme.onSurface),
-                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-                elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 28.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                Column(
-                    modifier = Modifier.padding(horizontal = 28.dp, vertical = 60.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                ) {
                     Card(
                         modifier = Modifier.fillMaxWidth(),
                         shape = androidx.compose.foundation.shape.RoundedCornerShape(0.dp),
@@ -115,7 +110,6 @@ fun OwnerScheduleScreen(
                             },
                         )
                     }
-                }
             }
         }
     }
