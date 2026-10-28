@@ -1,6 +1,7 @@
 package sk.termin.booking.ui
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -21,6 +22,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.CornerRadius
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.drawscope.clipRect
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -112,23 +119,58 @@ fun OwnerScheduleScreen(
 @Composable
 private fun BusinessTitle() {
     Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-        Text(
-            text = "Barbershop",
-            modifier = Modifier.fillMaxWidth(),
-            textAlign = TextAlign.Center,
-            color = androidx.compose.ui.graphics.Color.Black,
-            fontFamily = FontFamily.Cursive,
-            fontSize = 76.sp,
-            fontWeight = FontWeight.Normal,
-        )
+        Box(modifier = Modifier.fillMaxWidth().height(94.dp), contentAlignment = Alignment.Center) {
+            BarberPole(modifier = Modifier.align(Alignment.CenterStart))
+            Text(
+                text = "Barbershop",
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 34.dp),
+                textAlign = TextAlign.Center,
+                color = Color.Black,
+                fontFamily = FontFamily.Cursive,
+                fontSize = 76.sp,
+                fontWeight = FontWeight.Normal,
+            )
+            BarberPole(modifier = Modifier.align(Alignment.CenterEnd))
+        }
         Text(
             text = "Stephano",
             modifier = Modifier.fillMaxWidth(),
             textAlign = TextAlign.Center,
-            color = androidx.compose.ui.graphics.Color.Black,
+            color = Color.Black,
             fontSize = 36.sp,
             fontWeight = FontWeight.Normal,
         )
+    }
+}
+
+@Composable
+private fun BarberPole(modifier: Modifier = Modifier) {
+    Canvas(modifier = modifier.width(28.dp).height(82.dp)) {
+        val outline = Color(0xFF1E1B1C)
+        val silver = Color(0xFFE8DFC6)
+        val body = Color(0xFFFFF8E7)
+        val red = Color(0xFFB7352F)
+        val blue = Color(0xFF245A7B)
+        val left = size.width * 0.18f
+        val right = size.width * 0.82f
+        val top = size.height * 0.16f
+        val bottom = size.height * 0.84f
+        val width = right - left
+
+        drawRoundRect(outline, Offset(left - 2.dp.toPx(), top - 3.dp.toPx()), Size(width + 4.dp.toPx(), bottom - top + 6.dp.toPx()), CornerRadius(5.dp.toPx()))
+        drawRoundRect(body, Offset(left, top), Size(width, bottom - top), CornerRadius(3.dp.toPx()))
+        clipRect(left, top, right, bottom) {
+            repeat(4) { index ->
+                val x = -size.width * 0.22f + index * size.width * 0.32f
+                drawLine(red, Offset(x, bottom), Offset(x + size.width * 0.62f, top), strokeWidth = size.width * 0.18f)
+                drawLine(blue, Offset(x + size.width * 0.12f, bottom), Offset(x + size.width * 0.74f, top), strokeWidth = size.width * 0.18f)
+            }
+        }
+        drawRoundRect(outline, Offset(left, top), Size(width, bottom - top), CornerRadius(3.dp.toPx()), style = Stroke(1.dp.toPx()))
+        drawRoundRect(outline, Offset(left - 5.dp.toPx(), top - 7.dp.toPx()), Size(width + 10.dp.toPx(), 9.dp.toPx()), CornerRadius(4.dp.toPx()))
+        drawRoundRect(silver, Offset(left - 3.dp.toPx(), top - 5.dp.toPx()), Size(width + 6.dp.toPx(), 5.dp.toPx()), CornerRadius(3.dp.toPx()))
+        drawRoundRect(outline, Offset(left - 5.dp.toPx(), bottom - 2.dp.toPx()), Size(width + 10.dp.toPx(), 9.dp.toPx()), CornerRadius(4.dp.toPx()))
+        drawRoundRect(silver, Offset(left - 3.dp.toPx(), bottom), Size(width + 6.dp.toPx(), 5.dp.toPx()), CornerRadius(3.dp.toPx()))
     }
 }
 
