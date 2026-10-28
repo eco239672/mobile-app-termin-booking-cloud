@@ -115,17 +115,39 @@ fun OwnerScheduleScreen(
 
                     Spacer(Modifier.height(34.dp))
 
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        ValueTile(monthName, Modifier.weight(1f), compact = true)
-                        Spacer(Modifier.width(23.dp))
-                        NextButton(
-                            onClick = {
-                                onDateSelected(selectedDate.withDayOfMonth(1).plusMonths(1))
-                            },
-                        )
+                Box(
+                    modifier = Modifier.fillMaxWidth().height(66.dp),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Text(
+                        text = monthName,
+                        textAlign = TextAlign.Center,
+                        color = Color.Black,
+                        style = MaterialTheme.typography.headlineLarge,
+                        fontWeight = FontWeight.Normal,
+                    )
+                }
+                Spacer(Modifier.height(8.dp))
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    MonthArrowButton(
+                        symbol = "‹",
+                        onClick = {
+                            onDateSelected(selectedDate.withDayOfMonth(1).minusMonths(1))
+                        },
+                    )
+                    Spacer(Modifier.weight(1f))
+                    MonthArrowButton(
+                        symbol = "›",
+                        onClick = {
+                            onDateSelected(selectedDate.withDayOfMonth(1).plusMonths(1))
+                        },
+                    )
+                }
                     }
             }
-        }
     }
 }
 
@@ -195,25 +217,7 @@ private fun BarberPole(modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun ValueTile(value: String, modifier: Modifier, compact: Boolean = false) {
-    Box(
-        modifier = modifier
-            .height(if (compact) 66.dp else 70.dp),
-        contentAlignment = Alignment.Center,
-    ) {
-        Text(
-            text = value,
-            modifier = Modifier.padding(horizontal = 8.dp),
-            textAlign = TextAlign.Center,
-            color = Color.Black,
-            style = if (compact) MaterialTheme.typography.headlineLarge else MaterialTheme.typography.displaySmall,
-            fontWeight = FontWeight.Normal,
-        )
-    }
-}
-
-@Composable
-private fun NextButton(onClick: () -> Unit) {
+private fun MonthArrowButton(symbol: String, onClick: () -> Unit) {
     OutlinedButton(
         onClick = onClick,
         modifier = Modifier.width(46.dp).height(66.dp),
@@ -221,6 +225,6 @@ private fun NextButton(onClick: () -> Unit) {
         border = BorderStroke(1.dp, MaterialTheme.colorScheme.onSurface),
         contentPadding = androidx.compose.foundation.layout.PaddingValues(0.dp),
     ) {
-        Text("›", style = MaterialTheme.typography.headlineMedium)
+        Text(symbol, style = MaterialTheme.typography.headlineMedium)
     }
 }
