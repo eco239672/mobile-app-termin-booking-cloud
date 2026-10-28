@@ -192,7 +192,7 @@ private fun BusinessTitle() {
             fontSize = 54.sp,
             fontWeight = FontWeight.Normal,
         )
-        Spacer(Modifier.height(4.dp))
+        Spacer(Modifier.height(16.dp))
         Text(
             text = "Book now...",
             modifier = Modifier.fillMaxWidth(),
