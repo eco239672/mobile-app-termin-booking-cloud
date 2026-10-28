@@ -129,6 +129,7 @@ fun OwnerScheduleScreen(
                         textAlign = TextAlign.Center,
                         color = Color.Black,
                         style = MaterialTheme.typography.headlineLarge,
+                        fontFamily = FontFamily.Cursive,
                         fontWeight = FontWeight.Normal,
                     )
                 }
@@ -186,6 +187,7 @@ private fun BusinessTitle() {
             modifier = Modifier.fillMaxWidth(),
             textAlign = TextAlign.Center,
             color = Color.Black,
+            fontFamily = FontFamily.Cursive,
             fontSize = 36.sp,
             fontWeight = FontWeight.Normal,
         )
