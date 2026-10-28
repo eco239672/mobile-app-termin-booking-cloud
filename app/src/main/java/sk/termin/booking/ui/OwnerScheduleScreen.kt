@@ -141,15 +141,27 @@ private fun BarberFlourish(top: Boolean) {
         val secondCurl = Path().apply {
             if (top) {
                 moveTo(size.width * 0.12f, size.height * 0.72f)
-                cubicTo(size.width * 0.03f, size.height * 0.86f, size.width * 0.03f, size.height * 0.43f, size.width * 0.12f, size.height * 0.42f)
+                cubicTo(size.width * 0.00f, size.height * 0.95f, size.width * 0.00f, size.height * 0.22f, size.width * 0.10f, size.height * 0.28f)
+                cubicTo(size.width * 0.19f, size.height * 0.33f, size.width * 0.17f, size.height * 0.75f, size.width * 0.12f, size.height * 0.72f)
             } else {
                 moveTo(size.width * 0.88f, size.height * 0.28f)
-                cubicTo(size.width * 0.97f, size.height * 0.14f, size.width * 0.97f, size.height * 0.57f, size.width * 0.88f, size.height * 0.58f)
+                cubicTo(size.width * 1.00f, size.height * 0.05f, size.width * 1.00f, size.height * 0.78f, size.width * 0.90f, size.height * 0.72f)
+                cubicTo(size.width * 0.81f, size.height * 0.67f, size.width * 0.83f, size.height * 0.25f, size.width * 0.88f, size.height * 0.28f)
+            }
+        }
+        val centreAccent = Path().apply {
+            if (top) {
+                moveTo(size.width * 0.52f, size.height * 0.25f)
+                cubicTo(size.width * 0.57f, size.height * 0.27f, size.width * 0.60f, size.height * 0.39f, size.width * 0.62f, size.height * 0.52f)
+            } else {
+                moveTo(size.width * 0.48f, size.height * 0.75f)
+                cubicTo(size.width * 0.43f, size.height * 0.73f, size.width * 0.40f, size.height * 0.61f, size.width * 0.39f, size.height * 0.48f)
             }
         }
 
         drawPath(flourish, color = lineColor, style = stroke)
         drawPath(secondCurl, color = lineColor, style = stroke)
+        drawPath(centreAccent, color = lineColor, style = Stroke(width = 2.6.dp.toPx(), cap = StrokeCap.Round))
     }
 }
 
