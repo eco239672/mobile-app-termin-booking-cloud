@@ -38,11 +38,23 @@ import androidx.compose.ui.unit.sp
 import sk.termin.booking.R
 import sk.termin.booking.domain.Appointment
 import java.time.LocalDate
-import java.time.format.TextStyle
-import java.util.Locale
+import java.time.Month
 
-private val SlovakLocale = Locale.forLanguageTag("sk-SK")
 private val TenMillimetres = 63.dp
+private val SlovakMonthNames = mapOf(
+    Month.JANUARY to "Január",
+    Month.FEBRUARY to "Február",
+    Month.MARCH to "Marec",
+    Month.APRIL to "Apríl",
+    Month.MAY to "Máj",
+    Month.JUNE to "Jún",
+    Month.JULY to "Júl",
+    Month.AUGUST to "August",
+    Month.SEPTEMBER to "September",
+    Month.OCTOBER to "Október",
+    Month.NOVEMBER to "November",
+    Month.DECEMBER to "December",
+)
 
 @Composable
 fun OwnerScheduleScreen(
@@ -55,8 +67,7 @@ fun OwnerScheduleScreen(
     onWorkingHoursChanged: (Int) -> Unit,
 ) {
     val year = selectedDate.year.toString()
-    val monthName = selectedDate.month.getDisplayName(TextStyle.FULL, SlovakLocale)
-        .replaceFirstChar { it.titlecase(SlovakLocale) }
+    val monthName = SlovakMonthNames.getValue(selectedDate.month)
 
     Box(modifier = Modifier.fillMaxSize()) {
         androidx.compose.foundation.Image(
