@@ -1,6 +1,8 @@
 package sk.termin.booking.ui
 
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,15 +17,19 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.TextButton
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsPressedAsState
+import androidx.compose.runtime.remember
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.clipRect
 import androidx.compose.ui.layout.ContentScale
@@ -218,11 +224,27 @@ private fun BarberPole(modifier: Modifier = Modifier) {
 
 @Composable
 private fun MonthArrowButton(symbol: String, onClick: () -> Unit) {
-    TextButton(
-        onClick = onClick,
-        modifier = Modifier.size(52.dp),
-        shape = androidx.compose.foundation.shape.CircleShape,
-        contentPadding = androidx.compose.foundation.layout.PaddingValues(0.dp),
+    val interactionSource = remember { MutableInteractionSource() }
+    val isPressed = interactionSource.collectIsPressedAsState().value
+    val pressGlow = Brush.radialGradient(
+        colors = if (isPressed) {
+            listOf(Color.Black.copy(alpha = 0.18f), Color.Black.copy(alpha = 0.06f), Color.Transparent)
+        } else {
+            listOf(Color.Transparent, Color.Transparent)
+        },
+    )
+
+    Box(
+        modifier = Modifier
+            .size(73.dp)
+            .clip(androidx.compose.foundation.shape.CircleShape)
+            .background(pressGlow)
+            .clickable(
+                interactionSource = interactionSource,
+                indication = null,
+                onClick = onClick,
+            ),
+        contentAlignment = Alignment.Center,
     ) {
         Text(symbol, color = Color.Black, style = MaterialTheme.typography.headlineMedium)
     }
