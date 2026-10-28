@@ -123,45 +123,24 @@ private fun BarberFlourish(top: Boolean) {
             .padding(horizontal = 34.dp),
     ) {
         val lineColor = Color(0xFF7D4D31)
-        val stroke = Stroke(width = 1.6.dp.toPx(), cap = StrokeCap.Round)
+        val stroke = Stroke(width = 1.45.dp.toPx(), cap = StrokeCap.Round)
+        fun y(value: Float) = if (top) size.height * value else size.height * (1f - value)
 
         val flourish = Path().apply {
-            if (top) {
-                moveTo(size.width * 0.12f, size.height * 0.72f)
-                cubicTo(size.width * 0.25f, size.height * 0.08f, size.width * 0.52f, size.height * 0.10f, size.width * 0.62f, size.height * 0.52f)
-                cubicTo(size.width * 0.73f, size.height * 0.93f, size.width * 0.90f, size.height * 0.64f, size.width * 0.87f, size.height * 0.18f)
-                cubicTo(size.width * 0.86f, size.height * 0.04f, size.width * 0.79f, size.height * 0.10f, size.width * 0.80f, size.height * 0.27f)
-            } else {
-                moveTo(size.width * 0.88f, size.height * 0.28f)
-                cubicTo(size.width * 0.75f, size.height * 0.92f, size.width * 0.49f, size.height * 0.90f, size.width * 0.39f, size.height * 0.48f)
-                cubicTo(size.width * 0.29f, size.height * 0.07f, size.width * 0.11f, size.height * 0.36f, size.width * 0.14f, size.height * 0.81f)
-                cubicTo(size.width * 0.15f, size.height * 0.95f, size.width * 0.22f, size.height * 0.89f, size.width * 0.21f, size.height * 0.72f)
-            }
-        }
-        val secondCurl = Path().apply {
-            if (top) {
-                moveTo(size.width * 0.12f, size.height * 0.72f)
-                cubicTo(size.width * 0.00f, size.height * 0.95f, size.width * 0.00f, size.height * 0.22f, size.width * 0.10f, size.height * 0.28f)
-                cubicTo(size.width * 0.19f, size.height * 0.33f, size.width * 0.17f, size.height * 0.75f, size.width * 0.12f, size.height * 0.72f)
-            } else {
-                moveTo(size.width * 0.88f, size.height * 0.28f)
-                cubicTo(size.width * 1.00f, size.height * 0.05f, size.width * 1.00f, size.height * 0.78f, size.width * 0.90f, size.height * 0.72f)
-                cubicTo(size.width * 0.81f, size.height * 0.67f, size.width * 0.83f, size.height * 0.25f, size.width * 0.88f, size.height * 0.28f)
-            }
+            moveTo(size.width * 0.05f, y(0.70f))
+            cubicTo(size.width * 0.00f, y(0.96f), size.width * 0.00f, y(0.25f), size.width * 0.12f, y(0.29f))
+            cubicTo(size.width * 0.23f, y(0.34f), size.width * 0.24f, y(0.77f), size.width * 0.43f, y(0.55f))
+            cubicTo(size.width * 0.59f, y(0.35f), size.width * 0.70f, y(0.65f), size.width * 0.83f, y(0.51f))
+            cubicTo(size.width * 0.94f, y(0.40f), size.width * 0.98f, y(0.04f), size.width * 0.86f, y(0.10f))
+            cubicTo(size.width * 0.77f, y(0.15f), size.width * 0.78f, y(0.41f), size.width * 0.88f, y(0.34f))
         }
         val centreAccent = Path().apply {
-            if (top) {
-                moveTo(size.width * 0.52f, size.height * 0.25f)
-                cubicTo(size.width * 0.57f, size.height * 0.27f, size.width * 0.60f, size.height * 0.39f, size.width * 0.62f, size.height * 0.52f)
-            } else {
-                moveTo(size.width * 0.48f, size.height * 0.75f)
-                cubicTo(size.width * 0.43f, size.height * 0.73f, size.width * 0.40f, size.height * 0.61f, size.width * 0.39f, size.height * 0.48f)
-            }
+            moveTo(size.width * 0.31f, y(0.67f))
+            cubicTo(size.width * 0.39f, y(0.72f), size.width * 0.47f, y(0.49f), size.width * 0.57f, y(0.46f))
         }
 
         drawPath(flourish, color = lineColor, style = stroke)
-        drawPath(secondCurl, color = lineColor, style = stroke)
-        drawPath(centreAccent, color = lineColor, style = Stroke(width = 2.6.dp.toPx(), cap = StrokeCap.Round))
+        drawPath(centreAccent, color = lineColor, style = Stroke(width = 2.4.dp.toPx(), cap = StrokeCap.Round))
     }
 }
 
