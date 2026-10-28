@@ -151,6 +151,14 @@ fun OwnerScheduleScreen(
                         },
                     )
                 }
+                Spacer(Modifier.height(8.dp))
+                Text(
+                    text = "Open",
+                    modifier = Modifier.fillMaxWidth(),
+                    textAlign = TextAlign.Center,
+                    color = Color.Black,
+                    style = MaterialTheme.typography.bodyLarge,
+                )
                     }
             }
     }
