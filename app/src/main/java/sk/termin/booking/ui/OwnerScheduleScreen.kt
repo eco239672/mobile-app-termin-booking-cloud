@@ -76,16 +76,17 @@ fun OwnerScheduleScreen(
                     text = "Barbershop",
                     modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
                     textAlign = TextAlign.Center,
-                    color = MaterialTheme.colorScheme.primary,
+                    color = androidx.compose.ui.graphics.Color.Black,
                     fontFamily = FontFamily.Cursive,
-                    fontSize = 34.sp,
+                    fontSize = 51.sp,
                     fontWeight = FontWeight.Normal,
                 )
                 Text(
                     text = "Stephano",
                     modifier = Modifier.fillMaxWidth(),
                     textAlign = TextAlign.Center,
-                    style = MaterialTheme.typography.headlineSmall,
+                    color = androidx.compose.ui.graphics.Color.Black,
+                    fontSize = 36.sp,
                     fontWeight = FontWeight.Normal,
                 )
 
