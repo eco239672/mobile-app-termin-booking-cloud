@@ -69,6 +69,7 @@ fun OwnerScheduleScreen(
     onDateSelected: (LocalDate) -> Unit,
     onWorkingStartHourChanged: (Int) -> Unit,
     onWorkingHoursChanged: (Int) -> Unit,
+    onOpenMonth: () -> Unit,
 ) {
     val year = selectedDate.year.toString()
     val monthName = SlovakMonthNames.getValue(selectedDate.month)
@@ -154,7 +155,7 @@ fun OwnerScheduleScreen(
                     )
                 }
                 Spacer(Modifier.height(8.dp))
-                OpenLabel()
+                OpenLabel(onClick = onOpenMonth)
                     }
             }
     }
@@ -269,7 +270,7 @@ private fun MonthArrowButton(symbol: String, onClick: () -> Unit) {
 }
 
 @Composable
-private fun OpenLabel() {
+private fun OpenLabel(onClick: () -> Unit) {
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed = interactionSource.collectIsPressedAsState().value
 
@@ -293,7 +294,7 @@ private fun OpenLabel() {
             .clickable(
                 interactionSource = interactionSource,
                 indication = null,
-                onClick = {},
+                onClick = onClick,
             ),
         contentAlignment = Alignment.Center,
     ) {

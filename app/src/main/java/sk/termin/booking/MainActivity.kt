@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 import sk.termin.booking.data.DemoAppointmentRepository
 import sk.termin.booking.domain.Appointment
+import sk.termin.booking.ui.MonthDaysScreen
 import sk.termin.booking.ui.OwnerScheduleScreen
 import sk.termin.booking.ui.theme.TerminTheme
 import java.time.LocalDate
@@ -19,6 +20,7 @@ class MainActivity : ComponentActivity() {
     private var selectedDate by mutableStateOf(LocalDate.now())
     private var workingStartHour by mutableStateOf(9)
     private var workingHours by mutableStateOf(8)
+    private var isMonthOpen by mutableStateOf(false)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,15 +29,23 @@ class MainActivity : ComponentActivity() {
         }
         setContent {
             TerminTheme {
-                OwnerScheduleScreen(
-                    appointments = appointments,
-                    selectedDate = selectedDate,
-                    workingStartHour = workingStartHour,
-                    workingHours = workingHours,
-                    onDateSelected = { selectedDate = it },
-                    onWorkingStartHourChanged = { workingStartHour = it },
-                    onWorkingHoursChanged = { workingHours = it },
-                )
+                if (isMonthOpen) {
+                    MonthDaysScreen(
+                        displayedDate = selectedDate,
+                        onBack = { isMonthOpen = false },
+                    )
+                } else {
+                    OwnerScheduleScreen(
+                        appointments = appointments,
+                        selectedDate = selectedDate,
+                        workingStartHour = workingStartHour,
+                        workingHours = workingHours,
+                        onDateSelected = { selectedDate = it },
+                        onWorkingStartHourChanged = { workingStartHour = it },
+                        onWorkingHoursChanged = { workingHours = it },
+                        onOpenMonth = { isMonthOpen = true },
+                    )
+                }
             }
         }
     }
