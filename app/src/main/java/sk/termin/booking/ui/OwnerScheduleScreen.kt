@@ -94,7 +94,7 @@ fun OwnerScheduleScreen(
                 .fillMaxSize()
                 .statusBarsPadding()
                 .navigationBarsPadding()
-                .padding(horizontal = 32.dp, vertical = 28.dp),
+                .padding(start = 32.dp, top = 178.dp, end = 32.dp, bottom = 28.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
         ) {
@@ -187,6 +187,16 @@ private fun BusinessTitle() {
             textAlign = TextAlign.Center,
             color = Color.Black,
             fontSize = 36.sp,
+            fontWeight = FontWeight.Normal,
+        )
+        Spacer(Modifier.height(4.dp))
+        Text(
+            text = "Book now",
+            modifier = Modifier.fillMaxWidth(),
+            textAlign = TextAlign.Center,
+            color = Color.Black,
+            fontFamily = FontFamily.Cursive,
+            fontSize = 26.sp,
             fontWeight = FontWeight.Normal,
         )
     }
