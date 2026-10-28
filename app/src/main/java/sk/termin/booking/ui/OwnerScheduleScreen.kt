@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
@@ -219,7 +220,8 @@ private fun BarberPole(modifier: Modifier = Modifier) {
 private fun MonthArrowButton(symbol: String, onClick: () -> Unit) {
     TextButton(
         onClick = onClick,
-        modifier = Modifier.width(46.dp).height(66.dp),
+        modifier = Modifier.size(52.dp),
+        shape = androidx.compose.foundation.shape.CircleShape,
         contentPadding = androidx.compose.foundation.layout.PaddingValues(0.dp),
     ) {
         Text(symbol, color = Color.Black, style = MaterialTheme.typography.headlineMedium)
