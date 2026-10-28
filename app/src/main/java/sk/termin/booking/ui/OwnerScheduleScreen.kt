@@ -249,7 +249,7 @@ private fun MonthArrowButton(symbol: String, onClick: () -> Unit) {
                     val glowRadius = 73.dp.toPx()
                     drawCircle(
                         brush = Brush.radialGradient(
-                            colors = listOf(Color.Black.copy(alpha = 0.216f), Color.Black.copy(alpha = 0.072f), Color.Transparent),
+                            colors = listOf(Color.Black.copy(alpha = 0.324f), Color.Black.copy(alpha = 0.108f), Color.Transparent),
                             center = center,
                             radius = glowRadius,
                         ),
@@ -282,7 +282,7 @@ private fun OpenLabel() {
                     val glowRadius = 73.dp.toPx()
                     drawCircle(
                         brush = Brush.radialGradient(
-                            colors = listOf(Color.Black.copy(alpha = 0.216f), Color.Black.copy(alpha = 0.072f), Color.Transparent),
+                            colors = listOf(Color.Black.copy(alpha = 0.324f), Color.Black.copy(alpha = 0.108f), Color.Transparent),
                             center = center,
                             radius = glowRadius,
                         ),
