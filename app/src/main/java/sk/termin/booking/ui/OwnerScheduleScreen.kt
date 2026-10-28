@@ -1,6 +1,7 @@
 package sk.termin.booking.ui
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -21,6 +22,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -79,11 +84,12 @@ fun OwnerScheduleScreen(
                     ) {
                         Text(
                             text = "Barbershop\nStephano",
-                            modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
+                            modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
                             textAlign = TextAlign.Center,
                             style = MaterialTheme.typography.headlineSmall,
                             fontWeight = FontWeight.Normal,
                         )
+                        BarberFlourish()
                     }
 
                     Spacer(Modifier.height(40.dp))
@@ -112,6 +118,36 @@ fun OwnerScheduleScreen(
                     }
             }
         }
+    }
+}
+
+@Composable
+private fun BarberFlourish() {
+    Canvas(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(24.dp)
+            .padding(horizontal = 22.dp),
+    ) {
+        val lineColor = Color(0xFF7D4D31)
+        val stroke = Stroke(width = 1.5.dp.toPx(), cap = StrokeCap.Round)
+        val midY = size.height * 0.52f
+
+        val left = Path().apply {
+            moveTo(size.width * 0.05f, midY)
+            cubicTo(size.width * 0.13f, size.height * 0.10f, size.width * 0.26f, size.height * 0.10f, size.width * 0.31f, midY)
+            cubicTo(size.width * 0.35f, size.height * 0.85f, size.width * 0.41f, size.height * 0.85f, size.width * 0.45f, midY)
+            cubicTo(size.width * 0.41f, size.height * 0.35f, size.width * 0.35f, size.height * 0.35f, size.width * 0.34f, midY)
+        }
+        val right = Path().apply {
+            moveTo(size.width * 0.95f, midY)
+            cubicTo(size.width * 0.87f, size.height * 0.10f, size.width * 0.74f, size.height * 0.10f, size.width * 0.69f, midY)
+            cubicTo(size.width * 0.65f, size.height * 0.85f, size.width * 0.59f, size.height * 0.85f, size.width * 0.55f, midY)
+            cubicTo(size.width * 0.59f, size.height * 0.35f, size.width * 0.65f, size.height * 0.35f, size.width * 0.66f, midY)
+        }
+
+        drawPath(left, color = lineColor, style = stroke)
+        drawPath(right, color = lineColor, style = stroke)
     }
 }
 
