@@ -2,6 +2,7 @@ package sk.termin.booking.ui
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -14,8 +15,6 @@ import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
@@ -184,17 +183,20 @@ private fun BarberPole(modifier: Modifier = Modifier) {
 
 @Composable
 private fun ValueTile(value: String, modifier: Modifier, compact: Boolean = false) {
-    Card(
-        modifier = modifier.height(if (compact) 66.dp else 70.dp),
-        shape = androidx.compose.foundation.shape.RoundedCornerShape(0.dp),
-        border = BorderStroke(1.dp, MaterialTheme.colorScheme.onSurface),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
+    Box(
+        modifier = modifier
+            .height(if (compact) 66.dp else 70.dp)
+            .border(
+                border = BorderStroke(1.dp, Color.Black),
+                shape = androidx.compose.foundation.shape.RoundedCornerShape(0.dp),
+            ),
+        contentAlignment = Alignment.Center,
     ) {
         Text(
             text = value,
-            modifier = Modifier.fillMaxSize().padding(horizontal = 8.dp),
+            modifier = Modifier.padding(horizontal = 8.dp),
             textAlign = TextAlign.Center,
+            color = Color.Black,
             style = if (compact) MaterialTheme.typography.headlineLarge else MaterialTheme.typography.displaySmall,
             fontWeight = FontWeight.Normal,
         )
