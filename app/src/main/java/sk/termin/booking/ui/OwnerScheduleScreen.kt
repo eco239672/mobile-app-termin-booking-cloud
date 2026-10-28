@@ -32,6 +32,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -119,18 +120,25 @@ fun OwnerScheduleScreen(
 @Composable
 private fun BusinessTitle() {
     Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-        Box(modifier = Modifier.fillMaxWidth().height(94.dp), contentAlignment = Alignment.Center) {
-            BarberPole(modifier = Modifier.align(Alignment.CenterStart))
+        Row(
+            modifier = Modifier.fillMaxWidth().height(94.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            BarberPole()
             Text(
                 text = "Barbershop",
-                modifier = Modifier.fillMaxWidth().padding(horizontal = 34.dp),
+                modifier = Modifier.weight(1f),
                 textAlign = TextAlign.Center,
                 color = Color.Black,
                 fontFamily = FontFamily.Cursive,
-                fontSize = 76.sp,
+                fontSize = 52.sp,
                 fontWeight = FontWeight.Normal,
+                maxLines = 1,
+                softWrap = false,
+                overflow = TextOverflow.Clip,
             )
-            BarberPole(modifier = Modifier.align(Alignment.CenterEnd))
+            BarberPole()
         }
         Text(
             text = "Stephano",
