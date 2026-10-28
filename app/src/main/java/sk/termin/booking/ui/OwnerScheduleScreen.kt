@@ -193,7 +193,7 @@ private fun BusinessTitle() {
         )
         Spacer(Modifier.height(4.dp))
         Text(
-            text = "Book now",
+            text = "Book now...",
             modifier = Modifier.fillMaxWidth(),
             textAlign = TextAlign.Center,
             color = Color.Black,
