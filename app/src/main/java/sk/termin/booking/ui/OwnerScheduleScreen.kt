@@ -234,7 +234,7 @@ private fun MonthArrowButton(symbol: String, onClick: () -> Unit) {
                     val glowRadius = 73.dp.toPx()
                     drawCircle(
                         brush = Brush.radialGradient(
-                            colors = listOf(Color.Black.copy(alpha = 0.18f), Color.Black.copy(alpha = 0.06f), Color.Transparent),
+                            colors = listOf(Color.Black.copy(alpha = 0.216f), Color.Black.copy(alpha = 0.072f), Color.Transparent),
                             center = center,
                             radius = glowRadius,
                         ),
