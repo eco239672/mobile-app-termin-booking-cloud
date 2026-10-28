@@ -152,13 +152,7 @@ fun OwnerScheduleScreen(
                     )
                 }
                 Spacer(Modifier.height(8.dp))
-                Text(
-                    text = "Open",
-                    modifier = Modifier.fillMaxWidth(),
-                    textAlign = TextAlign.Center,
-                    color = Color.Black,
-                    style = MaterialTheme.typography.bodyLarge,
-                )
+                OpenLabel()
                     }
             }
     }
@@ -258,5 +252,45 @@ private fun MonthArrowButton(symbol: String, onClick: () -> Unit) {
         contentAlignment = Alignment.Center,
     ) {
         Text(symbol, color = Color.Black, style = MaterialTheme.typography.headlineMedium)
+    }
+}
+
+@Composable
+private fun OpenLabel() {
+    val interactionSource = remember { MutableInteractionSource() }
+    val isPressed = interactionSource.collectIsPressedAsState().value
+
+    Box(
+        modifier = Modifier
+            .width(112.dp)
+            .height(48.dp)
+            .drawBehind {
+                if (isPressed) {
+                    val glowRadius = 73.dp.toPx()
+                    drawCircle(
+                        brush = Brush.radialGradient(
+                            colors = listOf(Color.Black.copy(alpha = 0.216f), Color.Black.copy(alpha = 0.072f), Color.Transparent),
+                            center = center,
+                            radius = glowRadius,
+                        ),
+                        radius = glowRadius,
+                    )
+                }
+            }
+            .clickable(
+                interactionSource = interactionSource,
+                indication = null,
+                onClick = {},
+            ),
+        contentAlignment = Alignment.Center,
+    ) {
+        Text(
+            text = "Open",
+            textAlign = TextAlign.Center,
+            color = Color.Black,
+            fontFamily = FontFamily.Cursive,
+            fontSize = 26.sp,
+            fontWeight = FontWeight.Normal,
+        )
     }
 }
