@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <application
+        android:icon="@drawable/booking_owner_icon"
+        android:label="B-Shop Owner"
+        android:roundIcon="@drawable/booking_owner_icon"
+        tools:replace="android:icon,android:label,android:roundIcon" />
+</manifest>

@@ -16,6 +16,19 @@ android {
         versionName = "0.1.0"
     }
 
+    flavorDimensions += "role"
+    productFlavors {
+        create("client") {
+            dimension = "role"
+            versionNameSuffix = "-client"
+        }
+        create("owner") {
+            dimension = "role"
+            applicationIdSuffix = ".owner"
+            versionNameSuffix = "-owner"
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
