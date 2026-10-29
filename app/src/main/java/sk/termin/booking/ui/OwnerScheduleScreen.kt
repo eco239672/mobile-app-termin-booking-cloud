@@ -33,13 +33,13 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.clipRect
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import sk.termin.booking.BuildConfig
 import sk.termin.booking.R
 import sk.termin.booking.domain.Appointment
 import java.time.LocalDate
@@ -196,7 +196,7 @@ private fun BusinessTitle() {
         )
         Spacer(Modifier.height(16.dp))
         Text(
-            text = if (BuildConfig.FLAVOR == "owner") "Booked appointments" else "Book now...",
+            text = stringResource(R.string.booking_heading),
             modifier = Modifier.fillMaxWidth(),
             textAlign = TextAlign.Center,
             color = Color.Black,
