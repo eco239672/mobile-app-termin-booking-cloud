@@ -110,19 +110,19 @@ private fun DayLine(date: LocalDate) {
             modifier = Modifier.fillMaxWidth().padding(vertical = 9.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            Text(
-                text = date.dayOfMonth.toString(),
-                color = dayColor,
-                fontFamily = FontFamily.Cursive,
-                fontSize = 42.sp,
-            )
+            Text(text = date.dayOfMonth.toString(), color = dayColor, fontFamily = FontFamily.Cursive, fontSize = 42.sp)
             Spacer(Modifier.width(18.dp))
-            Text(
-                text = weekday,
-                color = dayColor,
-                fontFamily = FontFamily.Cursive,
-                fontSize = 30.sp,
-            )
+            Column {
+                Text(text = weekday, color = dayColor, fontFamily = FontFamily.Cursive, fontSize = 30.sp)
+                if (isPastDay) {
+                    Text(
+                        text = "Booking unavailable",
+                        color = Color.Black.copy(alpha = 0.42f),
+                        fontFamily = FontFamily.Cursive,
+                        fontSize = 18.sp,
+                    )
+                }
+            }
         }
         HorizontalDivider(color = dividerColor)
     }
