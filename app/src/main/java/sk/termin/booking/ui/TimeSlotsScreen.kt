@@ -1,5 +1,6 @@
 package sk.termin.booking.ui
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -32,7 +33,11 @@ import java.util.Locale
 private val TimeSlotLocale = Locale.forLanguageTag("sk-SK")
 
 @Composable
-fun TimeSlotsScreen(date: LocalDate, onBack: () -> Unit) {
+fun TimeSlotsScreen(
+    date: LocalDate,
+    onBack: () -> Unit,
+    onTimeSelected: (String) -> Unit,
+) {
     val dateTitle = "${date.dayOfMonth}. ${date.month.getDisplayName(TextStyle.FULL, TimeSlotLocale)} ${date.year}"
     val timeSlots = (8..19).map { hour -> "%02d:00".format(hour) }
 
@@ -77,7 +82,12 @@ fun TimeSlotsScreen(date: LocalDate, onBack: () -> Unit) {
                 Spacer(Modifier.height(16.dp))
             }
             items(timeSlots) { time ->
-                Column(modifier = Modifier.fillMaxWidth().padding(vertical = 10.dp)) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable { onTimeSelected(time) }
+                        .padding(vertical = 10.dp),
+                ) {
                     Text(
                         text = time,
                         color = Color.Black,
