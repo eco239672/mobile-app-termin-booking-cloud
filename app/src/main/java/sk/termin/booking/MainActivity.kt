@@ -25,6 +25,7 @@ class MainActivity : ComponentActivity() {
     private var isMonthOpen by mutableStateOf(false)
     private var selectedBookingDate by mutableStateOf<LocalDate?>(null)
     private var selectedBookingTime by mutableStateOf<String?>(null)
+    private var bookedSlots by mutableStateOf<Set<String>>(emptySet())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,12 +43,19 @@ class MainActivity : ComponentActivity() {
                                 date = bookingDate,
                                 time = bookingTime,
                                 onBack = { selectedBookingTime = null },
+                                onSubmit = {
+                                    bookedSlots = bookedSlots + bookingSlotKey(bookingDate, bookingTime)
+                                },
                             )
                         } else {
                             TimeSlotsScreen(
                                 date = bookingDate,
                                 onBack = { selectedBookingDate = null },
                                 onTimeSelected = { time -> selectedBookingTime = time },
+                                bookedTimes = bookedSlots
+                                    .filter { it.startsWith("$bookingDate|") }
+                                    .map { it.substringAfter('|') }
+                                    .toSet(),
                             )
                         }
                     } else {
@@ -75,4 +83,6 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
+    private fun bookingSlotKey(date: LocalDate, time: String) = "$date|$time"
 }

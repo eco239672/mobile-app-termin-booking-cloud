@@ -37,7 +37,12 @@ import java.util.Locale
 private val BookingRequestLocale = Locale.forLanguageTag("sk-SK")
 
 @Composable
-fun BookingRequestScreen(date: LocalDate, time: String, onBack: () -> Unit) {
+fun BookingRequestScreen(
+    date: LocalDate,
+    time: String,
+    onBack: () -> Unit,
+    onSubmit: () -> Unit,
+) {
     var customerName by rememberSaveable { mutableStateOf("") }
     var isSubmitted by rememberSaveable { mutableStateOf(false) }
     val dateTitle = "${date.dayOfMonth}. ${date.month.getDisplayName(TextStyle.FULL, BookingRequestLocale)} ${date.year}"
@@ -94,7 +99,10 @@ fun BookingRequestScreen(date: LocalDate, time: String, onBack: () -> Unit) {
             )
             Spacer(Modifier.height(22.dp))
             Button(
-                onClick = { isSubmitted = true },
+                onClick = {
+                    onSubmit()
+                    isSubmitted = true
+                },
                 enabled = customerName.trim().isNotEmpty(),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color.Black.copy(alpha = 0.82f),
@@ -106,7 +114,7 @@ fun BookingRequestScreen(date: LocalDate, time: String, onBack: () -> Unit) {
             if (isSubmitted) {
                 Spacer(Modifier.height(26.dp))
                 Text(
-                    text = "Žiadosť pre $customerName je uložená v tejto aplikácii.",
+                    text = "Termín pre $customerName je označený ako obsadený.",
                     modifier = Modifier.fillMaxWidth(),
                     color = Color.Black,
                     textAlign = TextAlign.Center,

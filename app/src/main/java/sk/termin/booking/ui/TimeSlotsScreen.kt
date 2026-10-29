@@ -37,6 +37,7 @@ fun TimeSlotsScreen(
     date: LocalDate,
     onBack: () -> Unit,
     onTimeSelected: (String) -> Unit,
+    bookedTimes: Set<String>,
 ) {
     val dateTitle = "${date.dayOfMonth}. ${date.month.getDisplayName(TextStyle.FULL, TimeSlotLocale)} ${date.year}"
     val timeSlots = (8..19).map { hour -> "%02d:00".format(hour) }
@@ -82,19 +83,31 @@ fun TimeSlotsScreen(
                 Spacer(Modifier.height(16.dp))
             }
             items(timeSlots) { time ->
+                val isBooked = time in bookedTimes
+                val timeColor = if (isBooked) Color.Black.copy(alpha = 0.38f) else Color.Black
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .clickable { onTimeSelected(time) }
+                        .clickable(enabled = !isBooked) { onTimeSelected(time) }
                         .padding(vertical = 10.dp),
                 ) {
                     Text(
                         text = time,
-                        color = Color.Black,
+                        color = timeColor,
                         fontFamily = FontFamily.Cursive,
                         fontSize = 36.sp,
                     )
-                    HorizontalDivider(color = Color.Black.copy(alpha = 0.28f))
+                    if (isBooked) {
+                        Text(
+                            text = "Booking unavailable",
+                            color = Color.Black.copy(alpha = 0.42f),
+                            fontFamily = FontFamily.Cursive,
+                            fontSize = 18.sp,
+                        )
+                    }
+                    HorizontalDivider(
+                        color = if (isBooked) Color.Black.copy(alpha = 0.14f) else Color.Black.copy(alpha = 0.28f),
+                    )
                 }
             }
         }
