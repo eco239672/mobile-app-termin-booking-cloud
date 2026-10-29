@@ -39,6 +39,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import sk.termin.booking.BuildConfig
 import sk.termin.booking.R
 import sk.termin.booking.domain.Appointment
 import java.time.LocalDate
@@ -195,7 +196,7 @@ private fun BusinessTitle() {
         )
         Spacer(Modifier.height(16.dp))
         Text(
-            text = "Book now...",
+            text = if (BuildConfig.FLAVOR == "owner") "Booked appointments" else "Book now...",
             modifier = Modifier.fillMaxWidth(),
             textAlign = TextAlign.Center,
             color = Color.Black,
