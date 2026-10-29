@@ -1,18 +1,22 @@
-# Termin — Android Booking App
+# B-Shop — Android Booking Prototype
 
-Termin is a native Android application for managing appointments. It is built with Kotlin and Jetpack Compose and is designed as the foundation for a cloud-connected booking product.
+B-Shop is a native Android booking prototype for a barbershop. The project produces two installable applications from the same codebase:
 
-## Current features
+- **B-Shop Client** (`sk.termin.booking`) for selecting a day and requesting an appointment.
+- **B-Shop Owner** (`sk.termin.booking.owner`) for the barbershop owner. It has its own launcher name and calendar icon.
 
-- A responsive daily appointment dashboard
-- A yearly owner calendar with 12 selectable months
-- Configurable working-day start time and duration (8 hours by default)
-- Appointment cards with time, customer, service, duration, and status
-- Confirmed and pending appointment summaries
-- A small, reusable Material 3 design system
-- A clean separation between UI, domain models, and data access
+## Current functionality
 
-The app currently uses demo data. The repository layer is intentionally isolated so it can be replaced with a cloud API without changing the user interface.
+- The displayed month, day count, and leap years follow the phone calendar.
+- Days before today are unavailable and are visually muted.
+- A future day opens the available hourly slots from 08:00 through 19:00.
+- The client can enter a name and submit a booking request.
+- A submitted time is immediately marked as unavailable for the active app session.
+- The owner variant uses the heading **Booked appointments**.
+
+## Current limitation
+
+Bookings are still stored only in the running application. Cloud synchronisation, persistent bookings, owner approval, and cross-device availability are the next implementation stage.
 
 ## Technology
 
@@ -21,31 +25,26 @@ The app currently uses demo data. The repository layer is intentionally isolated
 - Android SDK 36
 - Gradle 8.11.1
 
-## Getting started
+## Build on Windows
 
-1. Open this folder in Android Studio.
-2. Make sure JDK 17 and Android SDK Platform 36 are installed.
-3. Select an Android emulator or a physical device.
-4. Run the `app` configuration.
-
-To build a debug APK from the command line on Windows:
+Set the Android SDK path first:
 
 ```powershell
 $env:ANDROID_HOME = "C:\\Users\\<your-user>\\AppData\\Local\\Android\\Sdk"
-.\gradlew.bat assembleDebug
 ```
 
-The generated APK is located at `app/build/outputs/apk/debug/app-debug.apk`.
+Build the client application:
 
-## Project structure
+```powershell
+.\gradlew.bat assembleClientDebug
+```
 
-- `app/ui` — Compose screens and the visual theme
-- `app/domain` — appointment models and business concepts
-- `app/data` — data sources and repository contracts
+The client APK is created at `app/build/outputs/apk/client/debug/app-client-debug.apk`.
 
-## Next steps
+Build the owner application:
 
-- Connect a cloud database and backend API
-- Add authentication for service providers
-- Create a public appointment booking flow for customers
-- Add calendar management, notifications, and availability settings
+```powershell
+.\gradlew.bat assembleOwnerDebug
+```
+
+The owner APK is created at `app/build/outputs/apk/owner/debug/app-owner-debug.apk`.

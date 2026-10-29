@@ -41,7 +41,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import sk.termin.booking.R
-import sk.termin.booking.domain.Appointment
 import java.time.LocalDate
 import java.time.Month
 
@@ -63,13 +62,8 @@ private val SlovakMonthNames = mapOf(
 
 @Composable
 fun OwnerScheduleScreen(
-    appointments: List<Appointment>,
     selectedDate: LocalDate,
-    workingStartHour: Int,
-    workingHours: Int,
     onDateSelected: (LocalDate) -> Unit,
-    onWorkingStartHourChanged: (Int) -> Unit,
-    onWorkingHoursChanged: (Int) -> Unit,
     onOpenMonth: () -> Unit,
 ) {
     val year = selectedDate.year.toString()
