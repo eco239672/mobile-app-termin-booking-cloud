@@ -101,6 +101,9 @@ fun MonthDaysScreen(displayedDate: LocalDate, onBack: () -> Unit) {
 private fun DayLine(date: LocalDate) {
     val weekday = date.dayOfWeek.getDisplayName(TextStyle.FULL, SlovakLocale)
         .replaceFirstChar { it.titlecase(SlovakLocale) }
+    val isPastDay = date.isBefore(LocalDate.now())
+    val dayColor = if (isPastDay) Color.Black.copy(alpha = 0.38f) else Color.Black
+    val dividerColor = if (isPastDay) Color.Black.copy(alpha = 0.14f) else Color.Black.copy(alpha = 0.28f)
 
     Column(modifier = Modifier.fillMaxWidth()) {
         Row(
@@ -109,18 +112,18 @@ private fun DayLine(date: LocalDate) {
         ) {
             Text(
                 text = date.dayOfMonth.toString(),
-                color = Color.Black,
+                color = dayColor,
                 fontFamily = FontFamily.Cursive,
                 fontSize = 42.sp,
             )
             Spacer(Modifier.width(18.dp))
             Text(
                 text = weekday,
-                color = Color.Black,
+                color = dayColor,
                 fontFamily = FontFamily.Cursive,
                 fontSize = 30.sp,
             )
         }
-        HorizontalDivider(color = Color.Black.copy(alpha = 0.28f))
+        HorizontalDivider(color = dividerColor)
     }
 }
