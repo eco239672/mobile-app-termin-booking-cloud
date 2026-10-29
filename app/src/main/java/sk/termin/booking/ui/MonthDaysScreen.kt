@@ -53,7 +53,11 @@ private val SlovakMonthTitles = mapOf(
 private val SlovakLocale = Locale.forLanguageTag("sk-SK")
 
 @Composable
-fun MonthDaysScreen(displayedDate: LocalDate, onBack: () -> Unit) {
+fun MonthDaysScreen(
+    displayedDate: LocalDate,
+    onBack: () -> Unit,
+    onDateSelected: (LocalDate) -> Unit,
+) {
     val month = YearMonth.from(displayedDate)
     val dates = (1..month.lengthOfMonth()).map(month::atDay)
     val title = "${SlovakMonthTitles.getValue(month.month)} ${month.year}"
@@ -91,21 +95,25 @@ fun MonthDaysScreen(displayedDate: LocalDate, onBack: () -> Unit) {
                 Spacer(Modifier.height(18.dp))
             }
             items(dates, key = { it.toEpochDay() }) { date ->
-                DayLine(date)
+                DayLine(date = date, onClick = { onDateSelected(date) })
             }
         }
     }
 }
 
 @Composable
-private fun DayLine(date: LocalDate) {
+private fun DayLine(date: LocalDate, onClick: () -> Unit) {
     val weekday = date.dayOfWeek.getDisplayName(TextStyle.FULL, SlovakLocale)
         .replaceFirstChar { it.titlecase(SlovakLocale) }
     val isPastDay = date.isBefore(LocalDate.now())
     val dayColor = if (isPastDay) Color.Black.copy(alpha = 0.38f) else Color.Black
     val dividerColor = if (isPastDay) Color.Black.copy(alpha = 0.14f) else Color.Black.copy(alpha = 0.28f)
 
-    Column(modifier = Modifier.fillMaxWidth()) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(enabled = !isPastDay, onClick = onClick),
+    ) {
         Row(
             modifier = Modifier.fillMaxWidth().padding(vertical = 9.dp),
             verticalAlignment = Alignment.CenterVertically,
@@ -127,3 +135,4 @@ private fun DayLine(date: LocalDate) {
         HorizontalDivider(color = dividerColor)
     }
 }
+import androidx.compose.foundation.clickable

@@ -12,6 +12,7 @@ import sk.termin.booking.data.DemoAppointmentRepository
 import sk.termin.booking.domain.Appointment
 import sk.termin.booking.ui.MonthDaysScreen
 import sk.termin.booking.ui.OwnerScheduleScreen
+import sk.termin.booking.ui.TimeSlotsScreen
 import sk.termin.booking.ui.theme.TerminTheme
 import java.time.LocalDate
 
@@ -21,6 +22,7 @@ class MainActivity : ComponentActivity() {
     private var workingStartHour by mutableStateOf(9)
     private var workingHours by mutableStateOf(8)
     private var isMonthOpen by mutableStateOf(false)
+    private var selectedBookingDate by mutableStateOf<LocalDate?>(null)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,10 +32,22 @@ class MainActivity : ComponentActivity() {
         setContent {
             TerminTheme {
                 if (isMonthOpen) {
-                    MonthDaysScreen(
-                        displayedDate = selectedDate,
-                        onBack = { isMonthOpen = false },
-                    )
+                    val bookingDate = selectedBookingDate
+                    if (bookingDate != null) {
+                        TimeSlotsScreen(
+                            date = bookingDate,
+                            onBack = { selectedBookingDate = null },
+                        )
+                    } else {
+                        MonthDaysScreen(
+                            displayedDate = selectedDate,
+                            onBack = { isMonthOpen = false },
+                            onDateSelected = { date ->
+                                selectedDate = date
+                                selectedBookingDate = date
+                            },
+                        )
+                    }
                 } else {
                     OwnerScheduleScreen(
                         appointments = appointments,
