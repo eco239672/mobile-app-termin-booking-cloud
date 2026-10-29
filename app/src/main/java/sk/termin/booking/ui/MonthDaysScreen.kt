@@ -1,5 +1,6 @@
 package sk.termin.booking.ui
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -135,4 +136,3 @@ private fun DayLine(date: LocalDate, onClick: () -> Unit) {
         HorizontalDivider(color = dividerColor)
     }
 }
-import androidx.compose.foundation.clickable
